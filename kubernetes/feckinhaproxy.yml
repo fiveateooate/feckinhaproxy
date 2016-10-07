@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: feckinhaproxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: feckinhaproxy
+    spec:
+      hostNetwork: true
+      containers:
+      - name: feckinhaproxy
+        image: fiveateooate/feckinhaproxy
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.66.4 
