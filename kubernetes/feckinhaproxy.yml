@@ -1,5 +1,5 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: feckinhaproxy
 spec:
@@ -9,19 +9,9 @@ spec:
       labels:
         app: feckinhaproxy
     spec:
-      hostNetwork: true
       containers:
       - name: feckinhaproxy
         image: fiveateooate/feckinhaproxy
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        volumeMounts:
-        - mountPath: /dev/log
-          name: dev-log
-      nodeSelector:
-        kubernetes.io/hostname: 192.168.66.4 
-      volumes:
-      - name: dev-log
-        hostPath:
-          path: /dev/log 
