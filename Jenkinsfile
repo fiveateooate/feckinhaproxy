@@ -28,13 +28,9 @@ stage("Test") {
   }
 }
 stage("Deploy") {
-  node {
-   // def deployment_temp = getKubernetesJson {
-   //    port = 80
-   //    label = 'feckinhaproxy'
-   //    version = newVersion
-   // }
-    //kubernetesApply(file: deployment_temp, environment: 'KubeCloud-Local', registry: 'fiveateooate/feckinhaproxy')
-    def deployment_temp = "Bob"
+  node('kube-deployer') {
+    checkout scm
+    sh "bash kubectl get pods"
+    sh "cat ./kubernetes/feckinhaproxy.yml"
   }
 }
