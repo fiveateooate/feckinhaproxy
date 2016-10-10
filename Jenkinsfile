@@ -29,8 +29,8 @@ stage("Test") {
 }
 stage("Deploy") {
   node('kube-deployer') {
-    checkout scm
+    //checkout scm
     sh "bash kubectl get pods"
-    sh "cat ./kubernetes/feckinhaproxy.yml"
+    //sh "cat ./kubernetes/feckinhaproxy.yml"
   }
 }
