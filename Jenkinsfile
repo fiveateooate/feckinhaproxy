@@ -29,11 +29,12 @@ stage("Test") {
 }
 stage("Deploy") {
   node {
-    def deployment_temp = getKubernetesJson {
-       port = 80
-       label = 'feckinhaproxy'
-       version = newVersion
-    }
+   // def deployment_temp = getKubernetesJson {
+   //    port = 80
+   //    label = 'feckinhaproxy'
+   //    version = newVersion
+   // }
     //kubernetesApply(file: deployment_temp, environment: 'KubeCloud-Local', registry: 'fiveateooate/feckinhaproxy')
+    def deployment_temp = "Bob"
   }
 }
