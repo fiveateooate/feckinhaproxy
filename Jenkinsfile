@@ -4,21 +4,10 @@ stage("Build"){
 
     checkout scm
 
-    sh "docker build -t fiveateooate/feckinhaproxy ."
+    sh "docker build -t fiveateooate/feckinhaproxy:${BUILD_ID} ."
     withDockerRegistry([url:"https://index.docker.io/v1/",credentialsId:"dockerhub_fiveateooate"]) {
-      sh "docker push fiveateooate/feckinhaproxy"
+      sh "docker push fiveateooate/feckinhaproxy:${BUILD_ID}"
     }
-  }
-}
-stage("echo crap") {
-  node("dind") {
-    sh "env"
-  }
-}
-stage("yourmom") {
-  node {
-    sh "env"
-    sh "echo $BUILD_ID"
   }
 }
 stage("Test") {

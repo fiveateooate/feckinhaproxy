@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "name": "feckinhaproxy"
+  },
+  "kind": "DaemonSet",
+  "spec": {
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "feckinhaproxy"
+        }
+      },
+      "spec": {
+        "nodeSelector": {
+          "kubernetes.io/hostname": "192.168.66.2"
+        },
+        "containers": [
+          {
+            "imagePullPolicy": "Always",
+            "image": "fiveateooate/feckinhaproxy:${BUILD_ID}",
+            "name": "feckinhaproxy",
+            "ports": [
+              {
+                "containerPort": 80
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "apiVersion": "extensions/v1beta1"
+}

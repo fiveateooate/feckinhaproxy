@@ -1,0 +1,27 @@
+{
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+        "name": "feckinhaproxy",
+        "labels": {
+            "svc": "feckinhaproxy"
+        }
+    },
+    "spec": {
+        "selector": {
+            "app": "feckinhaproxy"
+        },
+        "ports": [
+            {
+                "port": 80,
+                "protocol": "TCP",
+                "name": "http",
+                "targetPort": 80
+            }
+        ],
+        "type": "LoadBalancer",
+        "externalIPs": [
+            "192.168.66.2"
+        ]
+    }
+}
