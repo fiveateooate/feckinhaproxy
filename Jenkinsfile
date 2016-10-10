@@ -31,6 +31,7 @@ stage("Deploy") {
   node('kube-deployer') {
    checkout scm
 
-    sh "bash -c 'kubectl apply -f kubernetes/'"
+    sh "bash -c 'kubectl delete -f kubernetes/'"
+    sh "bash -c 'kubectl create -f kubernetes/'"
   }
 }
