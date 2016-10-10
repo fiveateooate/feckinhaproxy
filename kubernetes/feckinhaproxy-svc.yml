@@ -16,6 +16,3 @@ spec:
   type: LoadBalancer
   externalIPs: 
   - 192.168.66.2
-  - 192.168.66.3
-  - 192.168.66.4
-
