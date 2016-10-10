@@ -34,6 +34,6 @@ stage("Deploy") {
        label = 'feckinhaproxy'
        version = newVersion
     }
-    kubernetesApply(file: deployment_temp, environment: 'KubeCloud-Local', registry: 'fiveateooate/feckinhaproxy')
+    //kubernetesApply(file: deployment_temp, environment: 'KubeCloud-Local', registry: 'fiveateooate/feckinhaproxy')
   }
 }
