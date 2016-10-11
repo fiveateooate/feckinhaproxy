@@ -17,7 +17,7 @@
         "containers": [
           {
             "imagePullPolicy": "Always",
-            "image": "fiveateooate/feckinhaproxy:${BUILD_ID}",
+            "image": "fiveateooate/feckinhaproxy:1234",
             "name": "feckinhaproxy",
             "ports": [
               {
