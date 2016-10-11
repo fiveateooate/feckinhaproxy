@@ -44,5 +44,6 @@ stage("Deploy") {
         cat $file | sed "s/JENKINS_BUILD_ID/$VERSION/g" | kubectl apply -f -
       done
     '''
+    deleteDir()
   }
 }
