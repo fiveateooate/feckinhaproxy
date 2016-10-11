@@ -2,8 +2,9 @@
   "metadata": {
     "name": "feckinhaproxy"
   },
-  "kind": "DaemonSet",
+  "kind": "Deployment",
   "spec": {
+    "replicas": 1,
     "template": {
       "metadata": {
         "labels": {
