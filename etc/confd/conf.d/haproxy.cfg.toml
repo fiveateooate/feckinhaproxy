@@ -1,0 +1,7 @@
+[template]
+src = "haproxy.cfg.tmpl"
+dest = "/etc/haproxy/haproxy-confd.cfg"
+keys = [
+    "/registry/services/specs/",
+]
+reload_cmd = supervisorctl restart haproxy
