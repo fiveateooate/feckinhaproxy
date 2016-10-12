@@ -19,6 +19,6 @@ spec:
           - name: ETCDHOST
             value: "192.168.66.2"
           - name: ETCDPORT
-            value: 2379
+            value: "2379"
       nodeSelector:
         kubernetes.io/hostname: 192.168.66.2
