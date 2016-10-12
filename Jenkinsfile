@@ -40,8 +40,10 @@ stage("Deploy") {
       set -e
 
       VERSION=`cat .version`".${BUILD_ID}"
+      echo $VERSION
       for file in kubernetes/*.yaml; do
-        cat $file | sed "s/JENKINS_BUILD_ID/$VERSION/g" | kubectl apply -f -
+        cat $file | sed "s/JENKINS_BUILD_ID/$VERSION/g" > $file.tmp
+        cat $file.tmp | kubectl apply -f -
       done
     '''
   }
