@@ -9,7 +9,7 @@ node("dind") {
   stage("Build") {
     sh '''
     DOCKER_TAG=`cat .version`.${BUILD_ID}
-    docker build -t fiveateooate/${PROJECT_NAME}:${DOCKER_TAG} ./kibana
+    docker build -t fiveateooate/${PROJECT_NAME}:${DOCKER_TAG} .
     '''
   }
   stage("Push") {
