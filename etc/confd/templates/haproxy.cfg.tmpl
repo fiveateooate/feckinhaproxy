@@ -60,24 +60,28 @@ resolvers clusterdns
    timeout retry	5s
    hold valid		10s
 
-#---------------------------------------------------------------------
-# main frontend which proxys to the backends
-#---------------------------------------------------------------------
-frontend main
-    bind *:80
-    reqadd X-Forwarded-Proto:\ http
+   #---------------------------------------------------------------------
+   # main frontend which proxys to the backends
+   #---------------------------------------------------------------------
+   frontend main
+       bind *:80
+       reqadd X-Forwarded-Proto:\ http
 
-{{with $data := json(range getvs "/registry/services/specs/*")}}
-{{$data}}
-{{end}}
-    acl jenkins 	hdr_beg(host)       jenkins
-    acl kibana  	hdr_beg(host)       kibana
+   {{ range $dir := lsdir "/registry/services/specs" -}}
+   {{ $subdir := printf "/registry/services/specs/%s/*" $dir -}}
+   {{ range gets $subdir -}}
+   {{ $data := json .Value -}}
+       acl jenkins         hdr_beg(host)       jenkins
+       acl kibana          hdr_beg(host)       kibana
 
-    use_backend jenkins_backend if jenkins
-    use_backend kibana_backend if kibana
+       use_backend jenkins_backend if jenkins
+       use_backend kibana_backend if kibana
 
 
-backend kibana_backend
-    server  srv1 kibana:80 check resolvers clusterdns
-backend jenkins_backend
-    server  srv1 jenkins.build-system:80 check resolvers clusterdns
+   backend kibana_backend
+       server  srv1 kibana:80 check resolvers clusterdns
+   backend jenkins_backend
+       server  srv1 jenkins.build-system:80 check resolvers clusterdns
+   {{ $data.spec.clusterIP }}
+   {{end -}}
+   {{end -}}
