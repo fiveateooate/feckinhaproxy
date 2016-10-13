@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: feckinhaproxy
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
         app: feckinhaproxy
     spec:
       containers:
-      - image: fiveateooate/feckinhaproxy:JENKINS_BUILD_ID
+      - image: fiveateooate/feckinhaproxy:JENKINS_DOCKER_TAG
         imagePullPolicy: Always
         name: feckinhaproxy
         ports:
@@ -20,5 +20,5 @@ spec:
             value: "192.168.66.2"
           - name: ETCDPORT
             value: "2379"
-      nodeSelector:
-        kubernetes.io/hostname: 192.168.66.2
+      #nodeSelector:
+      #  kubernetes.io/hostname: 192.168.66.2
