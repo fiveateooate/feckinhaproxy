@@ -3,7 +3,7 @@ node("dind") {
   env.DOCKER_API_VERSION="1.22"
   env.PROJECT_NAME="feckinhaproxy"
   
-  stage("Checkout") {
+  stage("Checkout Source") {
     checkout scm
   }
   stage("Build") {
@@ -23,7 +23,7 @@ node("dind") {
 }
 
 node("kube-deployer") {
-  stage "Checkout"
+  stage "Checkout Deployment Info"
   checkout scm
 
   stage "Deploy"  
